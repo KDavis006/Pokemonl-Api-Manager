@@ -1,5 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const connectDB = (url)=>{
-    return mongoose.connect(url)}
-    module.exports = connectDB
+
+const conectDB = (url) => {
+ // remember this is temporary and needs to be replaced
+ console.log('DB connection successfully');
+ return mongoose.connect(url, {
+ })
+}
+module.exports = conectDB
