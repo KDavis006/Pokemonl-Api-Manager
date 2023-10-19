@@ -17,10 +17,10 @@ router.get('/register', (req, res) => {
 // register handler
 router.post('/register', (req, res) => {
  // gets all input fields
- const {first_name, last_name, email, password, password2} = req.body;
+ const {username, email, password, password2} = req.body;
  let errors = [];
  // check if fields are empty
- if(!first_name ||!last_name ||!email ||!password ||!password2){
+ if(!username||!email ||!password ||!password2){
   errors.push({msg: 'Please fill in all fields'});
  }
  // check if passwords match
@@ -36,22 +36,20 @@ router.post('/register', (req, res) => {
   // push errors to req.flash
   res.render('pages/register', {
    errors: errors,
-   first_name: first_name,
-   last_name: last_name,
+   username: username,
    email: email,
    password: password,
   })
   } else {
 
   // finds if email already exists
-  User.findOne({email: email})
+  User.findOne({email: email, username: username})
   .then((user, err) => {
    if (user) {
     errors.push({msg: 'Email already in use'});
     res.render('pages/register', {
       errors: errors,
-      first_name: first_name,
-      last_name: last_name,
+      username: username,
       email: email,
       password: password,
       password2: password2
@@ -59,8 +57,7 @@ router.post('/register', (req, res) => {
   } else {
     // create new user
     const newUser = new User({
-     first_name: first_name,
-     last_name: last_name,
+     username: username,
      email: email,
      password: password
     });
