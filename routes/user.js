@@ -43,7 +43,10 @@ router.post('/register', (req, res) => {
   } else {
 
   // finds if email already exists
-  User.findOne({email: email, username: username})
+  User.findOne({email: email})
+  .then((user, err) => {
+    
+  })
   .then((user, err) => {
    if (user) {
     errors.push({msg: 'Email already in use'});
