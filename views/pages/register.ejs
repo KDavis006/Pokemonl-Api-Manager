@@ -2,12 +2,13 @@
   <head>
     <link rel="stylesheet" href="../public/styles/login.css">
   </head>
-<%- include ('../partials/messages') %>
+
 
  <div class="container">
   <form action="/users/register" method="POST">
   <div class="login-box">
       <h2 class="login-title">BlackJack Sign up</h2>
+      <%- include ('../partials/messages') %>
 
       <input class="login-input" type="text" name="username" id="username" placeholder="Enter Username" value="<%= typeof username != 'undefined' ? username : '' %>">
       <input class="login-input" type="text" name="email" id="email" placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>">
