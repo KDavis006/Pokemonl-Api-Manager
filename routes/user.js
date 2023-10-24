@@ -43,39 +43,64 @@ router.post('/register', (req, res) => {
   } else {
 
   // finds if email already exists
-  User.findOne({email: email, username: username})
-  .then((user, err) => {
-   if (user) {
-    errors.push({msg: 'Email already in use'});
-    res.render('pages/register', {
-      errors: errors,
-      username: username,
-      email: email,
-      password: password,
-      password2: password2
-    })
-  } else {
-    // create new user
-    const newUser = new User({
-     username: username,
-     email: email,
-     password: password
-    });
-    // hash password and save to database
-    bcrypt.genSalt(10, (err, salt) => {
-     bcrypt.hash(newUser.password, salt, ((err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      // save user to database using mongoose
-      newUser.save().then((value)=> {
-       req.flash('success_msg', 'You are now registered!');
-       res.redirect('/users/login');
-      })
-      .catch (value => console.log("value: yaaaay"));
-     }))
-    })
-   }
+  User.findOne({ $or: [{ email: email }, { username: username }] })
+  .then((user) => {
+    const errors = [];
+
+    if (user) {
+      if (user.email === email && user.username === username) {
+        errors.push({ msg: 'Email and username already in use' });
+      } else
+      if (user.username === username) {
+        errors.push({ msg: 'Username already in use' });
+      } else 
+      if (user.email === email) {
+        errors.push({msg: 'Email already in use'})
+      }
+      
+
+      res.render('pages/register', {
+        errors: errors,
+        username: username,
+        email: email,
+        password: password,
+        password2: password2
+      });
+    } else {
+      // create a new user
+      const newUser = new User({
+        username: username,
+        email: email,
+        password: password
+      });
+
+      // hash password and save to the database
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) {
+          throw err;
+        }
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) {
+            throw err;
+          }
+          newUser.password = hash;
+          // save the user to the database using mongoose
+          newUser.save()
+            .then(() => {
+              req.flash('success_msg', 'You are now registered!');
+              res.redirect('/users/login');
+            })
+            .catch((err) => {
+              console.log("Error saving user:", err);
+            });
+        });
+      });
+    }
   })
+  .catch((err) => {
+    console.log("Error in findOne:", err);
+  });
+
  }
 })
 
