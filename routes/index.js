@@ -17,14 +17,14 @@ router.get('/', (req,res) =>{
 // dashboard-Homepage Redirect
 router.get('/dashboard', ensureAuthenticated, (req, res) =>{
  console.log(req.user);
- res.render('pages/dashboard', {
+ res.render('pages/home', {
   user: req.user
  });
 })
 
-router.get('/game', ensureAuthenticated, (req, res) => {
+router.get('/pokedex', ensureAuthenticated, (req, res) => {
  console.log(req.user);
- res.render('pages/game', {
+ res.render('pages/pokedex', {
    user: req.user
   });
 })
