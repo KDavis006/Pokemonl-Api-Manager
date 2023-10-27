@@ -6,15 +6,19 @@ const obj = await fetch('https://api.tcgdex.net/v2/en/cards', {
  const cards = await obj.json()
 
 const getAllCards = async() => {
-
- const cards = await obj.json()
 	container.innerHTML = ''
- 
+  cards.sort((a, b) => a.name.localeCompare(b.name));
+
  const images = cards.map((x) => {
   if (x.image == undefined) {
 			return ''
 		} else {
-		return `<img class="cards" src="${x.image}/high.png" alt="${x.name}">`
+		return `
+    <div class="card-container">
+    <img class="cards" src="${x.image}/high.png" alt="${x.name}">
+    <h5 class="card-title">${x.name}</h5>
+    <button class="Star-image>S</button>
+    </div>`
 		}
 	})
  container.innerHTML += images.join('')
