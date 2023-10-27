@@ -1,23 +1,14 @@
-const TCGdex = require('@tcgdex/sdk').default
+const fetch = require('node-fetch');
 
-const readPokemon = async (setName, cardNumber) => {
-// Instantiate the SDK
-const tcgdex = new TCGdex('en');
-
-// go into an async context
-	// You can also get the same result using
-	const card = await tcgdex.fetch('sets', setName, cardNumber);
- console.log(card)
+const getOption = {
+	method: "GET",
+	headers: {'Content-Type': 'application/json'}
 }
 
-const readAllPokemon = async () => {
- // Instantiate the SDK
-const tcgdex = new TCGdex('en');
-
-// go into an async context
-	// You can also get the same result using
-	const card = await tcgdex.fetch('sets', 'Darkness Ablaze')
- console.log(card)
+async function getPoke(req, res){
+	const poke = await fetch('https://api.tcgdex.net/v2/en/cards', getOption)
+	const cards = await poke.json();
+	console.log(cards);
 }
 
-module.exports = {readPokemon, readAllPokemon};
+module.exports = {getPoke};

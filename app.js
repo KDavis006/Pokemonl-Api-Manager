@@ -12,6 +12,7 @@ const expressEJSLayout = require('express-ejs-layouts');
 
 
 
+
 try {
  mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
  .then(() => console.log(`Connected on Port: ${process.env.PORT}`))
@@ -25,6 +26,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('./views/public'));
 app.use(expressEJSLayout);
 // Body Parser
+
 app.use(express.urlencoded({extended: false}));
 // Express session
 app.use(session({
@@ -47,6 +49,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/user'));
 app.use('/public', express.static('./views/public'));
+app.use('/pokemon', require('./routes/pokemon-controller'));
 
 
 

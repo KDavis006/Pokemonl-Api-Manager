@@ -96,7 +96,6 @@
 
 .search-button {
     margin-left: -2rem;
-
     width: 1.5rem;
     color: transparent;
     height: 1.5rem;
@@ -134,4 +133,9 @@
     height: 16rem;
     margin: -2rem 1rem 0rem 1rem;
     box-shadow: 5px 5px 1px black;
+}
+
+.cards{
+    height: 30vh;
+    border-radius: 0.25rem;
 }

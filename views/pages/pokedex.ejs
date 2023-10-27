@@ -10,25 +10,17 @@
 </div>
 <div class="banner">
     <div class="input-container">
-        <input type="text" placeholder="Search" class="search">
-        <button class="search-button">S</button>
+        <input type="text" placeholder="Search" class="search searchInput">
+        <button class="search-button" onclick="()=>searchCards">S</button>
     </div>
 </div>
 <div class="all-main">
     <h1>Pokidex</h1>
-    <div class="card-holder">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </div>
-
+    <div class="card-holder"></div>
+ <a href="/pages/pokedex"><button>Test</button></a>
 </div>
-<script src="../public/dashboard.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"></script>
+<script type="module" src="../public/dashboard.js"></script>
 </body>
