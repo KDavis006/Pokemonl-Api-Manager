@@ -29,6 +29,15 @@ router.get('/pokedex', ensureAuthenticated, (req, res) => {
   });
 })
 
+router.get('/profile', ensureAuthenticated, (req, res) => {
+ console.log(req.user);
+ res.render('pages/profile', {
+   user: req.user
+  });
+})
+
+
+
 module.exports = router
 
 // this makes sure that the user is logged in before accessing any other pages

@@ -135,13 +135,6 @@
     box-shadow: 5px 5px 1px black;
 }
 
-.card-container {
-    height: 40vh;
-    width: 30vw;
-    border-radius: 0.375rem;
-    border:rgb(42, 90, 221);
-}
-
 .cards{
     height: 30vh;
     border-radius: 0.25rem;
