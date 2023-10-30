@@ -1,5 +1,8 @@
 const container = document.querySelector('.card-holder')
 const next_prev = document.querySelector('.next-prev-buttons')
+const searchButton = document.querySelector('.search-button')
+const user = document.querySelector('.target').innerHTML;
+console.log(user)
 const obj = await fetch('https://api.tcgdex.net/v2/en/cards', {
 	method: "GET",
 	headers: {'Content-Type': 'application/json'}
@@ -22,7 +25,11 @@ const getAllCards = async () => {
       return '';
     } else {
       return `
-        <img class="cards" src="${x.image}/high.png" alt="${x.name}">`;
+      <div>
+        <img class="cards" src="${x.image}/high.png" alt="${x.name}">
+        <h6 class="card-title">${x.name}</h6>
+        <button class="star btn btn-primary" id="${x.name}">s</button>
+      </div>`;
     }
   });
 
@@ -60,11 +67,12 @@ const createPaginationButtons = () => {
 // Call the initial function to load the first set of cards
 getAllCards();
 
-
-const searchCards = async () => {
+$(".search-Button").on('click', () => {
 		container.innerHTML = ''
 
-		const searchInput = document.getElementById('.searchInput');
+		const searchInput = document.querySelector('.searchInput').value;
+
+    console.log(searchInput);
 
   // Filter cards based on the search term
   const filteredCards = cards.filter((x) => {
@@ -75,9 +83,34 @@ const searchCards = async () => {
     if (x.image === undefined) {
       return ''; // Skip cards without images
     } else {
-      return `<img class="cards" src="${x.image}/high.png" alt="${x.name}">`;
+      return `
+      <div>
+        <img class="cards" src="${x.image}/high.png" alt="${x.name}">
+        <h6 class="card-title">${x.name}</h6>
+        <button class="btn btn-primary" id="${x.name}">s</button>
+      </div>`;
     }
   });
 
   container.innerHTML = images.join('');
-};
+});
+
+$('.star').on('click', (event) => {
+  const cardId = event.currentTarget.id;
+
+  console.log(cardId);
+
+  const filteredCards = cards.filter((x) => {
+    return x.name.toLowerCase().includes(cardId.toLowerCase());
+  });
+
+  console.log(filteredCards)
+
+  // Perform a fetch request to get card data
+  fetch(`/update/${user}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: {favorites: filteredCards}
+  })
+  console.log('it made it')
+})
