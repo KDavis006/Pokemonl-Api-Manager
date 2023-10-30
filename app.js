@@ -50,6 +50,7 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/user'));
 app.use('/public', express.static('./views/public'));
 app.use('/pokemon', require('./routes/pokemon-controller'));
+app.use('/update', require('./routes/users-controller'));
 
 
 
