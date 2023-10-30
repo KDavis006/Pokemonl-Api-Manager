@@ -1,0 +1,94 @@
+body {
+    background-image: linear-gradient(to bottom right, rgb(241, 249, 255), rgba(0, 119, 255, 0.849));
+    overflow-y: hidden;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: mainer;
+    src: url(../fonts/Designer.otf);
+}
+@font-face {
+    font-family: kanit;
+    src: url(../fonts/Kanit-Regular.ttf);
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-40px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+.container {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.avatar {
+    margin-top: -5rem;
+    background-color: transparent;
+    transform: translatey(0px);
+    animation: float 6s ease-in-out infinite;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+img {
+    width: 35rem;
+    height: 35rem;
+}
+
+.center-box {
+    position: relative;
+    text-align: center;
+}
+
+.button-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+button {
+    font-family: kanit;
+    width: 20rem;
+    padding: 1rem 1rem;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 1px black;
+    color: #000000;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 1rem 0;
+    /* Add vertical margin to separate buttons */
+}
+
+button:hover {
+    background-color: rgb(233, 233, 233);
+    box-shadow: 3px 3px 1px black;
+    transition: 0.3s;
+}
