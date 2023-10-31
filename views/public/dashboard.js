@@ -104,13 +104,22 @@ $('.star').on('click', (event) => {
     return x.name.toLowerCase().includes(cardId.toLowerCase());
   });
 
+  const updateData = {
+    $push: {
+      favorites: filteredCards, // The field 'cards' should match your database schema
+    },
+  };
+
   console.log(filteredCards)
+  console.log(updateData)
 
   // Perform a fetch request to get card data
   fetch(`/update/${user}`, {
     method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: {favorites: filteredCards}
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updateData),
   })
   console.log('it made it')
 })
