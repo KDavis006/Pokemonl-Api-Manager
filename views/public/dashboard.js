@@ -28,7 +28,7 @@ const getAllCards = async () => {
       <div>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="star btn btn-primary" id="${x.id}">s</button>
+        <button class="star btn btn-primary" id="${x.name}">✰</button>
       </div>`;
     }
   });
@@ -43,6 +43,8 @@ const createPaginationButtons = () => {
   const prevButton = document.createElement('button');
   prevButton.textContent = 'Previous';
   prevButton.disabled = currentPage === 0;
+  prevButton.classList.add('pagination-button'); // Add class to prevButton
+
   prevButton.addEventListener('click', () => {
     if (currentPage > 0) {
       currentPage--;
@@ -53,6 +55,8 @@ const createPaginationButtons = () => {
   const nextButton = document.createElement('button');
   nextButton.textContent = 'Next';
   nextButton.disabled = currentPage === totalPages - 1;
+  nextButton.classList.add('pagination-button'); // Add class to prevButton
+
   nextButton.addEventListener('click', () => {
     if (currentPage < totalPages - 1) {
       currentPage++;
@@ -87,7 +91,7 @@ $(".search-Button").on('click', () => {
       <div>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="btn btn-primary" id="${x.id}">s</button>
+        <button class="btn btn-primary" id="${x.name}">✰</button>
       </div>`;
     }
   });

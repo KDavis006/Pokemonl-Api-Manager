@@ -21,7 +21,6 @@
     z-index: 10;
     box-shadow: 0 0 5px black;
 }
-
 /* Style the links inside the navbar */
 .navbar a {
     font-weight: lighter;
@@ -55,15 +54,16 @@
 }
   .card-container {
       display: flex;
-      justify-content: space-around;
-      margin: 20px;
+      /* justify-content: space-around; */
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
   }
 
   .card {
-      width: 200px;
-      height: 300px;
+      width: 12rem;
+      height: 18rem;
       perspective: 1000px;
-      margin: 10px;
       cursor: pointer;
       position: relative;
   }
@@ -78,7 +78,7 @@
   }
 
   .card .card-front {
-    background-image: url(../images/7e48a9c47f2380fe858daba033559b08-removebg-preview.png);
+    background-image: url(../images/7e48a9c47f2380fe858daba033559b08\ \(1\).png);
     background-size: cover;
     background-position: center;
     border-radius: 0.5rem;
@@ -90,7 +90,9 @@
   }
 
   .card .card-back {
-      background-color: #e74c3c;
+    border-radius: 0.5rem;
+        background-size: cover;
+        background-position: center;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -98,11 +100,46 @@
       color: white;
       transform: rotateY(180deg);
   }
-
+  #fir {
+      background-image: url(../images/pika].png);
+  }
+  #sec{
+    background-image: url(../images/abra.png);
+  }
+  #thir{
+    background-image: url(../images/hitmunch.png);
+  }
   .card:hover .card-front {
       transform: rotateY(180deg);
   }
 
   .card:hover .card-back {
       transform: rotateY(0deg);
+  }
+  h1{
+    font-family: mainer;
+    width: 100%;
+    text-align: center;
+    margin: 6rem 0 1rem;
+  }
+        h2 {
+            font-family: mainer;
+            width: 100%;
+            text-align: center;
+            margin: 3rem 0 1rem;
+        }
+  .boxer {
+      border: 1px solid #ccc;
+      box-shadow: 0 0 2px gray;
+      width: 12rem;
+      height: 18rem;
+      text-align: center;
+  }
+
+  .boxer img {
+      max-width: 100%;
+      height: auto;
+  }
+  .star{
+    background-color: aqua;
   }
