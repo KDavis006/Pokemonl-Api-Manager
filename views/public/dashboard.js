@@ -28,7 +28,7 @@ const getAllCards = async () => {
       <div>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="star btn btn-primary" id="${x.name}">s</button>
+        <button class="star btn btn-primary" id="${x.name}">✰</button>
       </div>`;
     }
   });
@@ -91,7 +91,7 @@ $(".search-Button").on('click', () => {
       <div>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="btn btn-primary" id="${x.name}">s</button>
+        <button class="btn btn-primary" id="${x.name}">✰</button>
       </div>`;
     }
   });
