@@ -7,7 +7,10 @@
     font-family: mainer;
     src: url(../fonts/Designer.otf);
 }
-
+@font-face {
+    font-family: kanit;
+    src: url(../fonts/Kanit-Regular.ttf);
+}
 .navbar {
     background-color: #ffffff;
     overflow: hidden;
@@ -143,4 +146,13 @@
 
 .target {
     display: none;
+}
+.pagination-button{
+    background-color: #0077ff;
+    margin: 0 0.5rem 1rem 0.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    width: 5rem;
+    height: 1.5rem;
+    border: none;
 }
