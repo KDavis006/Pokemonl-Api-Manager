@@ -129,3 +129,7 @@
             background-color: #1c699b;
             transition: 0.3s;
         }
+
+                .target {
+                    display: none;
+                }

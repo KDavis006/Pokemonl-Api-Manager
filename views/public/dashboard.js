@@ -2,7 +2,7 @@ const container = document.querySelector('.card-holder')
 const next_prev = document.querySelector('.next-prev-buttons')
 const searchButton = document.querySelector('.search-button')
 const user = document.querySelector('.target').innerHTML;
-console.log(user)
+const favorites = document.querySelector('.target2').innerHTML;
 const obj = await fetch('https://api.tcgdex.net/v2/en/cards', {
 	method: "GET",
 	headers: {'Content-Type': 'application/json'}
@@ -28,7 +28,7 @@ const getAllCards = async () => {
       <div>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="star btn btn-primary" id="${x.name}">s</button>
+        <button class="star btn btn-primary" id="${x.id}">s</button>
       </div>`;
     }
   });
@@ -87,7 +87,7 @@ $(".search-Button").on('click', () => {
       <div>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="btn btn-primary" id="${x.name}">s</button>
+        <button class="btn btn-primary" id="${x.id}">s</button>
       </div>`;
     }
   });
@@ -101,8 +101,22 @@ $('.star').on('click', (event) => {
   console.log(cardId);
 
   const filteredCards = cards.filter((x) => {
-    return x.name.toLowerCase().includes(cardId.toLowerCase());
+    return x.id == (cardId);
   });
+
+  let inside = false
+
+  console.log(favorites)
+
+  const data = favorites.split(' ')
+
+  console.log(data)
+
+  data.forEach((f) => {
+    if (f == cardId) {
+      inside = true
+    }
+  })
 
   const updateData = {
     $push: {
@@ -114,7 +128,9 @@ $('.star').on('click', (event) => {
   console.log(updateData)
 
   // Perform a fetch request to get card data
-  fetch(`/update/${user}`, {
+
+  if(inside) return;
+  fetch(`/update/${user.email}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
