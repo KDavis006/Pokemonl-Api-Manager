@@ -38,6 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 // use flash messaging---Express
 app.use(flash());
+app.use(express.json())
 app.use((req, res, next) => {
  res.locals.success_msg = req.flash('success_msg');
  res.locals.error_msg = req.flash('error_msg');

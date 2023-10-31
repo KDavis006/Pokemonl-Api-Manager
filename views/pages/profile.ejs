@@ -17,15 +17,17 @@
     <h1>Favorite Cards</h1>
     <br>
     <div class="card-holder">
-        <% user.favorites.forEach(item=> { %>
-            <div class="item">
-                <img src="<%= item.image %>" alt="<%= item.name %>" />
-                <h5>
-                    <%= item.name %>
-                </h5>
-                <button>
-                    s
-                </button>
+        <% user.favorites.forEach(subArray=> { %>
+            <div class="sub-array">
+                <% subArray.forEach(item=> { %>
+                    <div class="item">
+                        <img src="<%= item.image %>/high.png" alt="<%= item.name %>" />
+                        <h5>
+                            <%= item.name %>
+                        </h5>
+                        <button>s</button>
+                    </div>
+                    <% }); %>
             </div>
             <% }); %>
     </div>
