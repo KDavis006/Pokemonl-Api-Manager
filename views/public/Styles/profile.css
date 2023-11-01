@@ -58,8 +58,8 @@
     height: 5rem;
 }
 .card-holder {
-    background-color: rgb(255, 255, 255);
-    height: 35vh;
+    background-color: rgb(0, 0, 0, 0);
+    height: 60rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -71,15 +71,28 @@
     background-color: rgb(42, 90, 221);
     box-shadow: 0px 0px 1px rgb(18, 67, 191);
     border-radius: 1rem;
-    width: 12rem;
-    height: 16rem;
-    margin: -2rem 1rem 0rem 1rem;
     box-shadow: 5px 5px 1px black;
 }
 
+.input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 .cards {
-    height: 30vh;
+    height: 25vh;
     border-radius: 0.25rem;
+}
+
+.btn {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
 }
   .profile-card {
     margin-top: 7rem;

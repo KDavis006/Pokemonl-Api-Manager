@@ -3,19 +3,7 @@
 </head>
 
 <body>
-    <p class="target"><%= user %></p>
-    <% user.favorites.forEach(subArray=> { %>
-        <div class="sub-array">
-            <% subArray.forEach(item=> { %>
-                <div class="item">
-                    <h5>
-                        <%= item.id %>
-                    </h5>
-                </div>
-                <% }); %>
-        </div>
-        <% }); %>
-
+<p class="target"><%= user.email %></p>
 <div class="navbar">
     <img class="logo" src="../public/images/blackapi.PNG">
     <a href="/dashboard">Home</a>

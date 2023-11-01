@@ -8,7 +8,6 @@ const getOption = {
 async function getPoke(req, res){
 	const poke = await fetch('https://api.tcgdex.net/v2/en/cards', getOption)
 	const cards = await poke.json();
-	console.log(cards);
 }
 
 module.exports = {getPoke};

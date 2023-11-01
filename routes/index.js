@@ -16,21 +16,18 @@ router.get('/', (req,res) =>{
 
 // dashboard-Homepage Redirect
 router.get('/dashboard', ensureAuthenticated, (req, res) =>{
- console.log(req.user);
  res.render('pages/home', {
   user: req.user
  });
 })
 
 router.get('/pokedex', ensureAuthenticated, (req, res) => {
- console.log(req.user);
  res.render('pages/pokedex', {
    user: req.user
   });
 })
 
 router.get('/profile', ensureAuthenticated, (req, res) => {
- console.log(req.user);
  res.render('pages/profile', {
    user: req.user
   });

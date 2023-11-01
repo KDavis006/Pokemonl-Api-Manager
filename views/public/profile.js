@@ -2,7 +2,6 @@ const container = document.querySelector('.card-holder')
 const next_prev = document.querySelector('.next-prev-buttons')
 const searchButton = document.querySelector('.search-button')
 const user = document.querySelector('.target').innerHTML;
-console.log(user)
 const obj = await fetch('https://api.tcgdex.net/v2/en/cards', {
 	method: "GET",
 	headers: {'Content-Type': 'application/json'}
@@ -11,8 +10,6 @@ const obj = await fetch('https://api.tcgdex.net/v2/en/cards', {
 
 $('.unfavorite').on('click', (event) => {
   const cardId = event.currentTarget.id;
-
-  console.log(cardId);
 
   const filteredCards = cards.filter((x) => {
     return x.id == cardId
@@ -25,8 +22,6 @@ $('.unfavorite').on('click', (event) => {
     },
   };
 
-  console.log(filteredCards);
-
   // Perform a fetch request to get card data
   fetch(`/update/${user}`, {
     method: 'DELETE',
@@ -35,5 +30,10 @@ $('.unfavorite').on('click', (event) => {
     },
     body: JSON.stringify(filteredCards)
   })
-  console.log('it made it')
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Data removed successfully');
+    // Reload the page
+    location.reload();
+  })
 })

@@ -2,7 +2,6 @@ const container = document.querySelector('.card-holder')
 const next_prev = document.querySelector('.next-prev-buttons')
 const searchButton = document.querySelector('.search-button')
 const user = document.querySelector('.target').innerHTML;
-const favorites = document.querySelector('.target2').innerHTML;
 const obj = await fetch('https://api.tcgdex.net/v2/en/cards', {
 	method: "GET",
 	headers: {'Content-Type': 'application/json'}
@@ -25,10 +24,12 @@ const getAllCards = async () => {
       return '';
     } else {
       return `
-      <div>
+      <div class='box'>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
-        <h6 class="card-title">${x.name}</h6>
-        <button class="star btn btn-primary" id="${x.name}">✰</button>
+        <div class='input'>
+          <h6 class="card-title">${x.name}</h6>
+          <button class="star btn btn-primary" id="${x.id}">✰</button>
+        </div>
       </div>`;
     }
   });
@@ -76,8 +77,6 @@ $(".search-Button").on('click', () => {
 
 		const searchInput = document.querySelector('.searchInput').value;
 
-    console.log(searchInput);
-
   // Filter cards based on the search term
   const filteredCards = cards.filter((x) => {
     return x.name.toLowerCase().includes(searchInput.toLowerCase());
@@ -88,10 +87,10 @@ $(".search-Button").on('click', () => {
       return ''; // Skip cards without images
     } else {
       return `
-      <div>
+      <div class='box'>
         <img class="cards" src="${x.image}/high.png" alt="${x.name}">
         <h6 class="card-title">${x.name}</h6>
-        <button class="btn btn-primary" id="${x.name}">✰</button>
+        <button class="btn btn-primary" id="${x.id}">✰</button>
       </div>`;
     }
   });
@@ -102,25 +101,9 @@ $(".search-Button").on('click', () => {
 $('.star').on('click', (event) => {
   const cardId = event.currentTarget.id;
 
-  console.log(cardId);
-
   const filteredCards = cards.filter((x) => {
     return x.id == (cardId);
   });
-
-  let inside = false
-
-  console.log(favorites)
-
-  const data = favorites.split(' ')
-
-  console.log(data)
-
-  data.forEach((f) => {
-    if (f == cardId) {
-      inside = true
-    }
-  })
 
   const updateData = {
     $push: {
@@ -128,18 +111,14 @@ $('.star').on('click', (event) => {
     },
   };
 
-  console.log(filteredCards)
-  console.log(updateData)
+  console.log(updateData);
 
   // Perform a fetch request to get card data
-
-  if(inside) return;
-  fetch(`/update/${user.email}`, {
+  fetch(`/update/${user}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(updateData),
   })
-  console.log('it made it')
 })
